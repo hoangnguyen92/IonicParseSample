@@ -1,0 +1,24 @@
+<ion-header-bar class="bar-positive">
+    <div class="buttons">
+        <!--<button class="button" ui-sref="todos">Back</button>-->
+        <h1 class="title">Login</h1>
+    </div>
+</ion-header-bar>
+
+<ion-content>
+    <div>
+        <ion-list>
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" ng-model="user.username" placeholder="Username" />
+                </label>
+                <label class="item item-input">
+                    <input type="password" ng-model="user.password" placeholder="Password">
+                </label>
+            </div>
+            <ion-button class="button button-block button-positive" ng-click="login(user)">
+                Login
+            </ion-button>
+        </ion-list>
+    </div>
+</ion-content>
