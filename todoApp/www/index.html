@@ -16,6 +16,9 @@
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+  <!-- Parse SDK javascript -->
+
+  <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
 
@@ -26,7 +29,33 @@
 </head>
 
 <body ng-app="todoApp">
-     <ion-nav-view animation="slide-left-right"></ion-nav-view>
+  <ion-nav-view animation="slide-left-right"></ion-nav-view>
 </body>
 
-</html>
+
+<script>
+  // Initialize Parse
+  Parse.initialize("BJuqNP20et5ZepVamIfhBsdqhpR0XfpbsUAkx6It", "is6EPnzD2wWnQY6X3ytHkM9MsWgIYDTCpudPQHVJ");
+  window.fbAsyncInit = function() {
+    Parse.FacebookUtils.init({ // this line replaces FB.init({
+      appId: '814964968558417', // Facebook App ID
+      status: true, // check Facebook Login status
+      cookie: true, // enable cookies to allow Parse to access the session
+      xfbml: true, // initialize Facebook social plugins on the page
+      version: 'v2.1' // point to the latest Facebook Graph API version
+    });
+
+    // Run code after the Facebook SDK is loaded.
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
