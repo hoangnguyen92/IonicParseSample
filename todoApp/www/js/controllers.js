@@ -35,19 +35,28 @@ angular.module('todoApp.controllers', []).controller('TodoListController', ['$sc
         });
     }
 
-}]).controller('LoginController', ['$scope', function($scope) {
+}]).controller('LoginController', ['$scope','$state', function($scope, $state ) {
     $scope.login = function(user) {
-        console.log(user);
+        Parse.User.logIn(user.username,user.password,{
+            success: function(user){
+                $state.go('todos');
+            },
+            error: function () {
+                console.error("WRONG USERNAME OR PASSWORD!")
+            }
+        });
     }
     $scope.loginFB = function() {
         Parse.FacebookUtils.logIn(null, {
             success: function(user) {
-                if (!user.existed()) {
-                    alert("User signed up and logged in through Facebook!");
-                }
-                else {
-                    alert("User logged in through Facebook!");
-                }
+//                if (!user.existed()) {
+//                    alert("User signed up and logged in through Facebook!");
+//                }
+//                else {
+//                    console.log(user);
+//                }
+                $state.go('todos');
+
             },
             error: function(user, error) {
                 alert("User cancelled the Facebook login or did not fully authorize.");
